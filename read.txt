@@ -1,0 +1,1 @@
+python manage.py import_products --path data/ingredients.csv

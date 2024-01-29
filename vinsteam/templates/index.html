@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="content_main">
+  <div class="container">
+    <h1>Рецепты</h1>
+
+    <form method="post" action="/add_recipe/">
+      {% csrf_token %}
+      
+      {{ recipe_form.as_p }}
+      
+      <!-- Форма для продуктов -->
+      {{ product_formset.management_form }}
+      {% for form in product_formset %}
+          {{ form.as_table }}
+          <ul id="{{ form.prefix }}-product_results"></ul>
+      {% endfor %}
+  
+      <input type="submit" value="Добавить">
+  </form>
+
+  <h2>Продукты в рецептах</h2>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }} - {{ product.times_used }}</li>
+        {% endfor %}
+    </ul>
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+  </div>
+</div>
+
+  
+{% endblock %}
