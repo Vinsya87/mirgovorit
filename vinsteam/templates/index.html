@@ -23,7 +23,7 @@
   <h2>Продукты в рецептах</h2>
     <ul>
         {% for product in products %}
-            <li>{{ product.name }} - {{ product.times_used }}</li>
+            <li><a href="{% url 'cookbook:product' product.id %}">{{ product.name }} - {{ product.times_used }}</a></li>
         {% endfor %}
     </ul>
   

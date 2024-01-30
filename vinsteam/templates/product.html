@@ -1,27 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load recipe_tags %}
 <div class="content_main">
-  <div class="container">
-    <h1>Продукт: {{ product.name }}</h1>
+    <div class="container">
+        <h1>Продукт: {{ product.name }}</h1>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Название рецепта</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for recipe in recipes %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название рецепта</th>
+                    <th>Сколько граммов</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
                 <tr>
                     <td>{{ recipe.id }}</td>
                     <td>{{ recipe.name }}</td>
+                    <td>
+                        {% get_recipe_weight recipe product %}
+                    </td>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-  </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}

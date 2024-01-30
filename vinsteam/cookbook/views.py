@@ -55,7 +55,7 @@ def show_recipes_without_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     recipes = Recipe.objects.filter(
         Q(recipeproduct__product=product,
-          recipeproduct__weight__lt=10) | Q(recipeproduct__isnull=True)).distinct()
+          recipeproduct__weight__lt=10) | Q(recipeproduct__isnull=False)).distinct()
     context = {
         'product': product,
         'recipes': recipes,
